@@ -9,36 +9,39 @@ An open-source, all-in-one electronics laboratory instrument running on a single
 
 ---
 
-## 🌟 Instruments & Capabilities
+## 🌟 Instruments & Status
 
-| Instrument | Underlying Hardware | Status | Key Specifications & Limits |
-| :--- | :--- | :--- | :--- |
-| **Frequency Counter** | PCNT0 + Hardware Timer | **Validated** | $10\text{ Hz} \text{ to } 25\text{ MHz}$, Period, Duty Cycle, Pulse Width, Real-time Statistics |
-| **Signal Generator** | LEDC High-Speed PWM | **Validated** | $1\text{ Hz} \text{ to } 40\text{ MHz}$ square wave reference with configurable duty cycle |
-| **Logic Analyzer** | I2S0 DMA Parallel Capture | **Validated** | 8 channels, $100\text{ kS/s} \text{ to } 2\text{ MS/s}$, edge triggering, deep canvas zoom/pan |
-| **UART Protocol Decoder** | Browser JavaScript | **Validated** | $9600 \text{ to } 115200\text{ baud}$, 8N1/8E1/8O1/7N1, Hex/ASCII, timing packet annotations |
-| **I²C Protocol Decoder** | Browser JavaScript | **Validated** | Standard Mode ($100\text{ kHz}$), 7-bit addressing, ACK/NACK, Repeated START, Data, STOP |
-| **SPI Protocol Decoder** | Browser JavaScript | **Validated** | Modes 0, 1, 2, 3 (CPOL 0/1, CPHA 0/1), $4–32\text{ bit}$ word lengths, MOSI/MISO dual decode |
-| **Digital Multimeter (DMM)**| ADC1 (GPIO 34) + 128x Oversample | **Implemented** | $0–3.3\text{ V}$ & $0–5.0\text{ V}$ DC, 12-bit SAR, real-time strip chart *(Absolute accuracy pending external standard)* |
-| **Oscilloscope** | ADC1 DMA + Timer | *Planned* | Dual-channel analog waveform capture, time/div, volt/div, trigger |
-| **Spectrum Analyzer (FFT)**| Dual-Core DSP Engine | *Planned* | Audio/PWM/ripple magnitude spectrum |
+| Instrument | Underlying Hardware | Status | Tested & Recommended Limits | Theoretical Limits |
+| :--- | :--- | :--- | :--- | :--- |
+| **Frequency Counter** | PCNT0 + Hardware Timer | **Validated** | **Tested**: $1\text{ Hz} \text{ to } 5.0\text{ MHz}$ (Internal Loopback)<br>**Recommended**: $10\text{ Hz} \text{ to } 5.0\text{ MHz}$ | Up to $40\text{ MHz}$ (PCNT clocking ceiling) |
+| **Signal Generator** | LEDC High-Speed PWM | **Validated** | **Tested**: $1\text{ Hz} \text{ to } 5.0\text{ MHz}$ (Clamped at 5 MHz LEDC ceiling)<br>**Recommended**: $10\text{ Hz} \text{ to } 5.0\text{ MHz}$ | Up to $40\text{ MHz}$ (1-bit resolution) |
+| **Logic Analyzer (4-CH)** | I2S0 DMA Parallel Capture | **Validated** | **Tested**: $100\text{ kS/s} \text{ to } 2.0\text{ MS/s}$ (4 channels: CH0–CH3)<br>*2 MS/s maximum validated capture rate under documented test setup* | Up to $20\text{ MS/s}$ DMA burst |
+| **Logic Analyzer (8-CH)** | I2S0 DMA Parallel Capture | **Implemented / Experimental** | Implemented in driver; 8-channel physical capture not fully validated | 8 parallel channels |
+| **UART Protocol Decoder** | Browser JavaScript | **Validated** | **Tested**: $9600 \text{ to } 115200\text{ baud}$, 8N1/8E1/8O1/7N1, Hex/ASCII, timing packet annotations | Up to $115200\text{ baud}$ (Higher bauds unvalidated) |
+| **I²C Protocol Decoder** | Browser JavaScript | **Validated** | **Tested**: Standard Mode ($100\text{ kHz}$), 7-bit addressing, ACK/NACK, Repeated START, Data, STOP | Fast Mode ($400\text{ kHz}$) |
+| **SPI Protocol Decoder** | Browser JavaScript | **Validated** | **Tested**: Modes 0, 1, 2, 3 (CPOL 0/1, CPHA 0/1), $4–32\text{ bit}$ word lengths, MOSI/MISO dual decode | Synchronous edge decode |
+| **Digital Multimeter (0–3.3V / 0–5V)** | ADC1 (GPIO 34) + 128x Oversample | **Implemented / Experimental** | **Tested**: $0.000\text{ V}$ GND baseline on silicon.<br>**Absolute External Accuracy**: **NOT VERIFIED** (Pending independent external voltage standard) | $0–3.3\text{ V}$ (1:1) / $0–5.0\text{ V}$ (2:1) |
+| **DMM High-Voltage (12V / 24V)** | Dedicated Divider Network | **Planned / Deferred** | Requires external high-voltage front-end | $0–12\text{ V}$ / $0–24\text{ V}$ |
+| **Current Measurement** | Shunt Resistor + Op-Amp | **Planned** | Out of scope for current hardware baseline | Low-side shunt |
+| **Oscilloscope** | ADC1 DMA + Timer | **Planned** | Dual-channel analog waveform capture, time/div, volt/div, trigger | Single/Dual channel |
+| **Spectrum Analyzer (FFT)** | Dual-Core DSP Engine | **Planned** | Audio/PWM/ripple magnitude spectrum | Real-time FFT |
 
 ---
 
-## 📌 Dedicated Hardware Pin Mapping
+## 📌 Validated Hardware Pin Mapping
 
-| Pin | Function / Instrument | Direction | Electrical Characteristics & Protection |
+| Pin | Function / Instrument | Direction | Electrical Characteristics & Validation Status |
 | :--- | :--- | :--- | :--- |
-| **GPIO 18** | **PCNT Pulse Counter Input / LA CH0** | Input | $3.3\text{ V}$ LVTTL logic input with pull-down |
-| **GPIO 19** | **LEDC Signal Generator / UART TX** | Output | Push-pull square wave test reference output |
-| **GPIO 5** | **Logic Analyzer CH1 (UART RX)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 16** | **Logic Analyzer CH2 (I²C SDA)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 17** | **Logic Analyzer CH3 (I²C SCL)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 21** | **Logic Analyzer CH4 (SPI CS)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 22** | **Logic Analyzer CH5 (SPI CLK)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 23** | **Logic Analyzer CH6 (SPI MOSI)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 27** | **Logic Analyzer CH7 (SPI MISO)** | Input | $3.3\text{ V}$ LVTTL digital logic channel |
-| **GPIO 34** | **Analog DMM Input (ADC1_CH6)** | Input | Input-only analog pin, $10\text{ k}\Omega$ series resistor, BAT54S Schottky clamp, $100\text{ nF}$ filter |
+| **GPIO 18** | **Frequency Counter Input (PCNT) / LA CH0** | Input | $3.3\text{ V}$ LVTTL logic input with pull-down (**Validated**) |
+| **GPIO 19** | **Signal Generator Output (LEDC) / UART TX** | Output | Push-pull square wave test reference output (**Validated**) |
+| **GPIO 12** | **Logic Analyzer CH1** | Input | $3.3\text{ V}$ LVTTL digital logic channel (**Validated**) |
+| **GPIO 13** | **Logic Analyzer CH2** | Input | $3.3\text{ V}$ LVTTL digital logic channel (**Validated**) |
+| **GPIO 14** | **Logic Analyzer CH3** | Input | $3.3\text{ V}$ LVTTL digital logic channel (**Validated**) |
+| **GPIO 25** | **Logic Analyzer CH4** | Input | $3.3\text{ V}$ LVTTL digital logic channel (*Implemented / Unvalidated*) |
+| **GPIO 26** | **Logic Analyzer CH5** | Input | $3.3\text{ V}$ LVTTL digital logic channel (*Implemented / Unvalidated*) |
+| **GPIO 27** | **Logic Analyzer CH6** | Input | $3.3\text{ V}$ LVTTL digital logic channel (*Implemented / Unvalidated*) |
+| **GPIO 32** | **Logic Analyzer CH7** | Input | $3.3\text{ V}$ LVTTL digital logic channel (*Implemented / Unvalidated*) |
+| **GPIO 34** | **Analog DMM Input (ADC1_CH6)** | Input | Input-only analog pin, $10\text{ k}\Omega$ series resistor, BAT54S Schottky clamp, $100\text{ nF}$ filter (**Implemented**) |
 
 ---
 
@@ -60,10 +63,10 @@ pio run -t upload --upload-port COM7
 ### 2. Connect & Open Dashboard
 1. Connect your PC or mobile device to the ESP32 Wi-Fi Access Point:
    * **SSID**: `ESP32-Digital-Lab`
-   * **Password**: `digitallab123`
+   * **Password**: Configured in `include/system_config.h` (default: `digitallab123`; **change this default before deployment**)
 2. Open your web browser and navigate to:
    * **`http://192.168.4.1`** or **`http://esp32.local`**
-3. **Loopback Quick Test**: Connect a jumper wire between **GPIO 19** (Generator Output) and **GPIO 18** (Counter Input / Logic Analyzer CH0) to verify full-stack operation in real-time.
+3. **Loopback Quick Test**: Connect a jumper wire between **GPIO 19** (Generator Output) and **GPIO 18** (Counter Input / Logic Analyzer CH0) to verify loopback frequency counting and digital waveform capture.
 
 ---
 
@@ -87,7 +90,7 @@ pio run -t upload --upload-port COM7
 |           ▼ Hardware Abstraction Layer (HAL)                            |
 |  +-------------------+  +-------------------+  +---------------------+  |
 |  | PCNT Counter HAL  |  | LEDC Generator HAL|  | I2S DMA LA Engine   |  |
-|  | (PCNT0 Reciprocal)|  | (1Hz - 40MHz PWM) |  | (8-Channel Parallel)|  |
+|  | (PCNT0 Reciprocal)|  | (1Hz - 5MHz PWM)  |  | (4/8-CH Parallel)   |  |
 |  +-------------------+  +-------------------+  +---------------------+  |
 |  | ADC1 DMM HAL      |                                                  |
 |  | (12-bit Oversamp) |                                                  |
@@ -95,18 +98,26 @@ pio run -t upload --upload-port COM7
 +-------------------------------------------------------------------------+
 ```
 
-* **Zero-Install Web Experience**: Complete web dashboard is compiled directly into ESP32 flash memory (`PROGMEM`) as a compressed asset. No internet connection or cloud service required.
+* **Zero-Install Web Experience**: Complete web dashboard is compiled directly into ESP32 flash memory (`PROGMEM`) as a compressed asset (<20KB gzipped). No internet connection or cloud service required.
 * **Collision-Free Hardware Management**: The `InstrumentManager` enforces exclusive ownership over shared GPIOs, timers, and DMA channels, preventing peripheral conflicts across operating modes.
-* **Hardware-Accelerated I2S DMA Engine**: Logic Analyzer samples 8 channels in parallel via I2S parallel slave DMA, bypassing CPU interrupt overhead.
-* **Client-Side Protocol Decoding**: High-bandwidth digital captures are decoded on the client browser using Web Workers and optimized Canvas renderers, keeping ESP32 CPU free for real-time sampling.
+* **Hardware-Accelerated I2S DMA Engine**: Logic Analyzer samples digital channels in parallel via I2S parallel slave DMA, bypassing CPU interrupt overhead (2 MS/s maximum validated capture rate under the documented test setup).
+* **Client-Side Protocol Decoding**: High-bandwidth digital captures are decoded on the client browser using Web Workers and Canvas renderers, keeping ESP32 CPU free for real-time sampling.
 
 ---
 
 ## 🛡️ Safety & Metrology Principles
 
-* **Low-Voltage Development Only**: This instrument is designed solely for **low-voltage electronics prototyping ($0–3.3\text{ V} / 0–5.0\text{ V}$)**. **NEVER connect directly to household AC mains.**
-* **Input Electrical Stress**: On the DMM channel, a $10\text{ k}\Omega$ series resistor and BAT54S Schottky clamp network limits fault current during overvoltage events. Maximum continuous DC voltage ratings remain subject to board-level front-end configuration.
-* **Metrology Transparency**: We maintain a strict distinction between **self-consistency verification** and **absolute external metrology calibration**. Full validation reports and characterization data are maintained in [`docs/performance.md`](docs/performance.md) and [`docs/limitations.md`](docs/limitations.md).
+* **Low-Voltage Electronics Only**: This instrument is intended strictly for **low-voltage electronics prototyping ($0–3.3\text{ V} / 0–5.0\text{ V}$)**. **NEVER connect directly to household AC mains.**
+* **DMM Input Protection & Electrical Stress**:
+  - The DMM input uses a $10\text{ k}\Omega$ series resistor and BAT54S dual Schottky clamp to $3.3\text{ V}$ and GND.
+  - At a $30\text{ V}$ input fault, the $10\text{ k}\Omega$ resistor limits calculated clamp current to $\approx 2.64\text{ mA}$ ($P_R = 69.4\text{ mW}$) assuming a $3.65\text{ V}$ clamp.
+  - **This is an electrical-stress calculation, NOT a guaranteed safe-input rating.**
+  - **The 30 V input is NOT rated for continuous operation.** Maximum allowable input voltage and transient capability remain **UNSPECIFIED** until the complete protection network, 3.3 V rail behavior, and board-level failure modes are validated.
+* **Metrology Transparency**:
+  - **Frequency Counter**: Validated from $1\text{ Hz}$ to $5.0\text{ MHz}$ via internal loopback.
+  - **Logic Analyzer & UART**: 4 channels validated at $100\text{ kS/s} \text{ to } 2.0\text{ MS/s}$; UART validated up to $115200\text{ baud}$.
+  - **Digital Multimeter**: Implemented + functionally tested on hardware; **absolute external accuracy is NOT VERIFIED** pending physical multi-point calibration against an independent precision voltage standard.
+  - Detailed metrology benchmarks and limits are documented in [`docs/performance.md`](docs/performance.md) and [`docs/limitations.md`](docs/limitations.md).
 
 ---
 
