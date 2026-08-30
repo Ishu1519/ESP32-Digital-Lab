@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "sample_rate_hz": 100000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 409,
+      "measured_period_us": 100.0,
+      "expected_period_us": 100.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "sample_rate_hz": 500000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 82,
+      "measured_period_us": 100.0,
+      "expected_period_us": 100.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "sample_rate_hz": 1000000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 41,
+      "measured_period_us": 100.0,
+      "expected_period_us": 100.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "sample_rate_hz": 2000000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 20,
+      "measured_period_us": 100.0,
+      "expected_period_us": 100.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "sample_rate_hz": 5000000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 9,
+      "measured_period_us": 88.9,
+      "expected_period_us": 100.0,
+      "error_pct": 11.1,
+      "status": "DRIFT"
+    },
+    {
+      "sample_rate_hz": 10000000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 9,
+      "measured_period_us": 44.433,
+      "expected_period_us": 100.0,
+      "error_pct": 55.567,
+      "status": "DRIFT"
+    },
+    {
+      "sample_rate_hz": 20000000,
+      "sample_depth": 2048,
+      "sample_count": 2048,
+      "ch0_transitions": 9,
+      "measured_period_us": 22.225,
+      "expected_period_us": 100.0,
+      "error_pct": 77.775,
+      "status": "DRIFT"
+    }
+  ]
+}

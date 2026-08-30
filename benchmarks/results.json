@@ -1,0 +1,205 @@
+{
+  "sweep": [
+    {
+      "requested_hz": 1,
+      "gen_mode": "Timer",
+      "res_bits": 0,
+      "div_param": 0,
+      "calc_gen_hz": 1,
+      "pcnt_meas_hz": 1.0000006666666668,
+      "error_pct": 6.66666666759852e-05,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 2,
+      "gen_mode": "Timer",
+      "res_bits": 0,
+      "div_param": 0,
+      "calc_gen_hz": 2,
+      "pcnt_meas_hz": 2.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 5,
+      "gen_mode": "Timer",
+      "res_bits": 0,
+      "div_param": 0,
+      "calc_gen_hz": 5,
+      "pcnt_meas_hz": 5.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 10,
+      "gen_mode": "Timer",
+      "res_bits": 0,
+      "div_param": 0,
+      "calc_gen_hz": 10,
+      "pcnt_meas_hz": 10.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 20,
+      "gen_mode": "Timer",
+      "res_bits": 0,
+      "div_param": 0,
+      "calc_gen_hz": 20,
+      "pcnt_meas_hz": 20.00018667,
+      "error_pct": 0.0009333500000074935,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 50,
+      "gen_mode": "LEDC",
+      "res_bits": 14,
+      "div_param": 25000,
+      "calc_gen_hz": 50,
+      "pcnt_meas_hz": 49.99963333666667,
+      "error_pct": 0.0007333266666620375,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 100,
+      "gen_mode": "LEDC",
+      "res_bits": 14,
+      "div_param": 12500,
+      "calc_gen_hz": 100,
+      "pcnt_meas_hz": 100.0,
+      "error_pct": 0.0,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 500,
+      "gen_mode": "LEDC",
+      "res_bits": 14,
+      "div_param": 2500,
+      "calc_gen_hz": 500,
+      "pcnt_meas_hz": 500.00300006666663,
+      "error_pct": 0.0006000133333259328,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 1000,
+      "gen_mode": "LEDC",
+      "res_bits": 14,
+      "div_param": 1250,
+      "calc_gen_hz": 1000,
+      "pcnt_meas_hz": 1000.0026666666668,
+      "error_pct": 0.0002666666666755191,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 5000,
+      "gen_mode": "LEDC",
+      "res_bits": 13,
+      "div_param": 500,
+      "calc_gen_hz": 5000,
+      "pcnt_meas_hz": 4999.970000666667,
+      "error_pct": 0.0005999866666570597,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 10000,
+      "gen_mode": "LEDC",
+      "res_bits": 12,
+      "div_param": 500,
+      "calc_gen_hz": 10000,
+      "pcnt_meas_hz": 10000.013333666668,
+      "error_pct": 0.0001333366666767688,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 50000,
+      "gen_mode": "LEDC",
+      "res_bits": 10,
+      "div_param": 400,
+      "calc_gen_hz": 50000,
+      "pcnt_meas_hz": 49998.86666333334,
+      "error_pct": 0.002266673333317158,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 100000,
+      "gen_mode": "LEDC",
+      "res_bits": 9,
+      "div_param": 400,
+      "calc_gen_hz": 100000,
+      "pcnt_meas_hz": 99998.73330333334,
+      "error_pct": 0.0012666966666583905,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 500000,
+      "gen_mode": "LEDC",
+      "res_bits": 7,
+      "div_param": 320,
+      "calc_gen_hz": 500000,
+      "pcnt_meas_hz": 499987.6664666667,
+      "error_pct": 0.002466706666664686,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 1000000,
+      "gen_mode": "LEDC",
+      "res_bits": 6,
+      "div_param": 320,
+      "calc_gen_hz": 1000000,
+      "pcnt_meas_hz": 999984.6666666666,
+      "error_pct": 0.001533333333337214,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 2000000,
+      "gen_mode": "LEDC",
+      "res_bits": 5,
+      "div_param": 320,
+      "calc_gen_hz": 2000000,
+      "pcnt_meas_hz": 1999958.0003333334,
+      "error_pct": 0.0020999833333306015,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 5000000,
+      "gen_mode": "LEDC",
+      "res_bits": 4,
+      "div_param": 256,
+      "calc_gen_hz": 5000000,
+      "pcnt_meas_hz": 4999926.000999999,
+      "error_pct": 0.0014799800000153483,
+      "status": "VERIFIED"
+    },
+    {
+      "requested_hz": 10000000,
+      "gen_mode": "LEDC",
+      "res_bits": 4,
+      "div_param": 256,
+      "calc_gen_hz": 5000000,
+      "pcnt_meas_hz": 4999928.666666667,
+      "error_pct": 0.001426666666660458,
+      "status": "LEDC_LIMIT (5MHz)"
+    },
+    {
+      "requested_hz": 15000000,
+      "gen_mode": "LEDC",
+      "res_bits": 4,
+      "div_param": 256,
+      "calc_gen_hz": 5000000,
+      "pcnt_meas_hz": 4999894.666,
+      "error_pct": 0.0021066799999959764,
+      "status": "LEDC_LIMIT (5MHz)"
+    },
+    {
+      "requested_hz": 20000000,
+      "gen_mode": "LEDC",
+      "res_bits": 4,
+      "div_param": 256,
+      "calc_gen_hz": 5000000,
+      "pcnt_meas_hz": 4999929.334666667,
+      "error_pct": 0.0014133066666685045,
+      "status": "LEDC_LIMIT (5MHz)"
+    }
+  ],
+  "test_type": "ESP32 Internal Loopback Self-Consistency"
+}

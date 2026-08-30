@@ -1,9 +1,28 @@
+# PlatformIO
 .pio/
+.pioenvs/
+.piolibdeps/
+
+# IDEs and Editors
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Build Artifacts
 *.bin
 *.elf
 *.o
 *.a
 *.d
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+desktop.ini

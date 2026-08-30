@@ -33,7 +33,7 @@
 // Analog / Scope / DMM channels (Milestone 3/4 ready)
 #define PIN_ADC_SCOPE_CH1    34  // ADC1_CH6 (Input only)
 #define PIN_ADC_SCOPE_CH2    35  // ADC1_CH7 (Input only)
-#define PIN_ADC_DMM          36  // ADC1_CH0 (SENSOR_VP, Input only)
+#define PIN_ADC_DMM          34  // ADC1_CH6 (Input only, DMM primary channel)
 
 // DAC Analog Output
 #define PIN_DAC_OUT1         25

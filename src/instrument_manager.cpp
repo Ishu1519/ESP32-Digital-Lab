@@ -143,14 +143,12 @@ void InstrumentManager::buildTelemetryPacket(JsonDocument &doc) {
 }
 
 esp_err_t InstrumentManager::dispatchCommand(const JsonObject &cmd) {
-    if (!cmd.containsKey("cmd")) {
-        return ESP_ERR_INVALID_ARG;
-    }
-
-    const char *cmd_str = cmd["cmd"];
-    if (strcmp(cmd_str, "switch_mode") == 0) {
-        int target_type = cmd["mode"] | 0;
-        return switchInstrument((InstrumentType)target_type);
+    if (cmd.containsKey("cmd")) {
+        const char *cmd_str = cmd["cmd"];
+        if (strcmp(cmd_str, "switch_mode") == 0) {
+            int target_type = cmd["mode"] | 0;
+            return switchInstrument((InstrumentType)target_type);
+        }
     }
 
     if (m_active_instrument) {

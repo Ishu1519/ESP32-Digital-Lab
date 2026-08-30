@@ -3,12 +3,16 @@
 #include "system_config.h"
 #include "instrument_manager.h"
 #include "instruments/freq_counter.h"
+#include "instruments/logic_analyzer.h"
+#include "instruments/dmm.h"
 #include "wifi_manager.h"
 #include "web_server.h"
 
 static const char *TAG = "MAIN";
 
 static FrequencyCounterInstrument s_freq_counter_inst;
+static LogicAnalyzerInstrument s_logic_analyzer_inst;
+static DmmInstrument s_dmm_inst;
 
 void telemetry_task(void *pvParameters) {
     TickType_t last_wake_time = xTaskGetTickCount();
@@ -22,6 +26,7 @@ void telemetry_task(void *pvParameters) {
 
 void setup() {
     Serial.begin(115200);
+    Serial.setTimeout(50);
     delay(1000);
 
     Serial.println("\n=======================================================");
@@ -39,6 +44,8 @@ void setup() {
 
     // 2. Register Instruments
     instMgr.registerInstrument(&s_freq_counter_inst);
+    instMgr.registerInstrument(&s_logic_analyzer_inst);
+    instMgr.registerInstrument(&s_dmm_inst);
 
     // 3. Activate Default Instrument (Frequency Counter)
     ESP_LOGI(TAG, "Activating Frequency Counter...");
@@ -69,6 +76,29 @@ void setup() {
 }
 
 void loop() {
-    // FreeRTOS handles background network, PCNT gate timing, and telemetry tasks
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    // Process serial JSON commands from benchmark runner or serial terminal
+    if (Serial.available() > 0) {
+        String line = Serial.readStringUntil('\n');
+        line.trim();
+        if (line.length() > 0) {
+            DynamicJsonDocument doc(16384);
+            DeserializationError err = deserializeJson(doc, line);
+            if (!err) {
+                JsonObject root = doc.as<JsonObject>();
+                InstrumentManager::getInstance().dispatchCommand(root);
+                
+                // Immediately respond with latest telemetry
+                DynamicJsonDocument resp(16384);
+                InstrumentManager::getInstance().buildTelemetryPacket(resp);
+                serializeJson(resp, Serial);
+                Serial.println();
+            } else if (line == "READ" || line == "STATUS") {
+                DynamicJsonDocument resp(16384);
+                InstrumentManager::getInstance().buildTelemetryPacket(resp);
+                serializeJson(resp, Serial);
+                Serial.println();
+            }
+        }
+    }
+    vTaskDelay(pdMS_TO_TICKS(50));
 }

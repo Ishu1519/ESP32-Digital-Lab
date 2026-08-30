@@ -72,13 +72,13 @@ void WebServerManager::broadcastTelemetry() {
     s_ws.cleanupClients();
     if (s_ws.count() == 0) return;
 
-    StaticJsonDocument<1024> doc;
+    DynamicJsonDocument doc(4096);
     InstrumentManager::getInstance().buildTelemetryPacket(doc);
 
-    char buffer[1024];
-    size_t len = serializeJson(doc, buffer, sizeof(buffer));
-    if (len > 0) {
-        s_ws.textAll(buffer, len);
+    String buffer;
+    serializeJson(doc, buffer);
+    if (buffer.length() > 0) {
+        s_ws.textAll(buffer.c_str(), buffer.length());
     }
 }
 

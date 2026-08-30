@@ -26,7 +26,7 @@ esp_err_t FrequencyCounterInstrument::init() {
     pcnt_config_params_t config = {
         .input_gpio = m_input_gpio,
         .gate_time_ms = m_gate_time_ms,
-        .filter_val = 100 // Noise filter threshold
+        .filter_val = 0 // 0 = Full bandwidth (DC to 40 MHz)
     };
     esp_err_t err = hal_pcnt_init(&config);
     if (err != ESP_OK) {
@@ -34,10 +34,10 @@ esp_err_t FrequencyCounterInstrument::init() {
         return err;
     }
 
-    // Initialize the test signal generator as well on GPIO 19
+    // Initialize the test signal generator on GPIO 19
     hal_ledc_gen_init(m_ref_gpio);
     hal_ledc_gen_set_frequency(10000, 50); // Default 10 kHz 50% duty
-    hal_ledc_gen_start(); // Automatically start reference generator for instant loopback testing
+    hal_ledc_gen_start();
 
     resetStats();
     return ESP_OK;
@@ -139,10 +139,13 @@ void FrequencyCounterInstrument::getTelemetryJson(JsonObject &root) {
     genObj["freq_hz"] = gen.frequency_hz;
     genObj["duty_pct"] = gen.duty_cycle_pct;
     genObj["gpio"] = gen.output_gpio;
+    genObj["res_bits"] = gen.res_bits;
+    genObj["div_param"] = gen.div_param;
+    genObj["calc_freq_hz"] = gen.calc_freq_hz;
 }
 
 esp_err_t FrequencyCounterInstrument::handleCommand(const JsonObject &cmd) {
-    const char *action = cmd["action"];
+    const char *action = cmd["action"] | cmd["cmd"];
     if (!action) return ESP_ERR_INVALID_ARG;
 
     if (strcmp(action, "set_gate_time") == 0) {
@@ -155,7 +158,7 @@ esp_err_t FrequencyCounterInstrument::handleCommand(const JsonObject &cmd) {
     } else if (strcmp(action, "set_ref_gen") == 0) {
         uint32_t freq = cmd["freq_hz"] | 1000;
         uint8_t duty = cmd["duty_pct"] | 50;
-        bool enabled = cmd["enabled"] | true;
+        bool enabled = cmd.containsKey("enabled") ? (bool)cmd["enabled"] : true;
 
         hal_ledc_gen_set_frequency(freq, duty);
         if (enabled) {

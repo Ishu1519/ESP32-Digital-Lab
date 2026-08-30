@@ -1,0 +1,182 @@
+[
+  {
+    "requested_hz": 1,
+    "mode": "Timer",
+    "res_bits": 0,
+    "div_param": 0,
+    "calc_gen_hz": 1,
+    "pcnt_meas_hz": 1.999984,
+    "error_pct": 99.9984
+  },
+  {
+    "requested_hz": 2,
+    "mode": "Timer",
+    "res_bits": 0,
+    "div_param": 0,
+    "calc_gen_hz": 2,
+    "pcnt_meas_hz": 1.999976,
+    "error_pct": 0.0012000000000012
+  },
+  {
+    "requested_hz": 5,
+    "mode": "Timer",
+    "res_bits": 0,
+    "div_param": 0,
+    "calc_gen_hz": 5,
+    "pcnt_meas_hz": 4,
+    "error_pct": 20.0
+  },
+  {
+    "requested_hz": 10,
+    "mode": "Timer",
+    "res_bits": 0,
+    "div_param": 0,
+    "calc_gen_hz": 10,
+    "pcnt_meas_hz": 10.00004,
+    "error_pct": 0.00040000000000262043
+  },
+  {
+    "requested_hz": 20,
+    "mode": "Timer",
+    "res_bits": 0,
+    "div_param": 0,
+    "calc_gen_hz": 20,
+    "pcnt_meas_hz": 14,
+    "error_pct": 30.0
+  },
+  {
+    "requested_hz": 50,
+    "mode": "LEDC",
+    "res_bits": 14,
+    "div_param": 25000,
+    "calc_gen_hz": 50,
+    "pcnt_meas_hz": 50,
+    "error_pct": 0.0
+  },
+  {
+    "requested_hz": 100,
+    "mode": "LEDC",
+    "res_bits": 14,
+    "div_param": 12500,
+    "calc_gen_hz": 100,
+    "pcnt_meas_hz": 88.00158403,
+    "error_pct": 11.998415969999996
+  },
+  {
+    "requested_hz": 500,
+    "mode": "LEDC",
+    "res_bits": 14,
+    "div_param": 2500,
+    "calc_gen_hz": 500,
+    "pcnt_meas_hz": 271.999456,
+    "error_pct": 45.6001088
+  },
+  {
+    "requested_hz": 1000,
+    "mode": "LEDC",
+    "res_bits": 14,
+    "div_param": 1250,
+    "calc_gen_hz": 1000,
+    "pcnt_meas_hz": 1000.002,
+    "error_pct": 0.00019999999999527064
+  },
+  {
+    "requested_hz": 5000,
+    "mode": "LEDC",
+    "res_bits": 13,
+    "div_param": 500,
+    "calc_gen_hz": 5000,
+    "pcnt_meas_hz": 3784.015136,
+    "error_pct": 24.31969728
+  },
+  {
+    "requested_hz": 10000,
+    "mode": "LEDC",
+    "res_bits": 12,
+    "div_param": 500,
+    "calc_gen_hz": 10000,
+    "pcnt_meas_hz": 6658,
+    "error_pct": 33.42
+  },
+  {
+    "requested_hz": 50000,
+    "mode": "LEDC",
+    "res_bits": 10,
+    "div_param": 400,
+    "calc_gen_hz": 50000,
+    "pcnt_meas_hz": 48806,
+    "error_pct": 2.388
+  },
+  {
+    "requested_hz": 100000,
+    "mode": "LEDC",
+    "res_bits": 9,
+    "div_param": 400,
+    "calc_gen_hz": 100000,
+    "pcnt_meas_hz": 80291.67883,
+    "error_pct": 19.708321169999994
+  },
+  {
+    "requested_hz": 500000,
+    "mode": "LEDC",
+    "res_bits": 7,
+    "div_param": 320,
+    "calc_gen_hz": 500000,
+    "pcnt_meas_hz": 196785.1486,
+    "error_pct": 60.64297028000001
+  },
+  {
+    "requested_hz": 1000000,
+    "mode": "LEDC",
+    "res_bits": 6,
+    "div_param": 320,
+    "calc_gen_hz": 1000000,
+    "pcnt_meas_hz": 938898.4888,
+    "error_pct": 6.110151119999995
+  },
+  {
+    "requested_hz": 2000000,
+    "mode": "LEDC",
+    "res_bits": 5,
+    "div_param": 320,
+    "calc_gen_hz": 2000000,
+    "pcnt_meas_hz": 1511800,
+    "error_pct": 24.41
+  },
+  {
+    "requested_hz": 5000000,
+    "mode": "LEDC",
+    "res_bits": 4,
+    "div_param": 256,
+    "calc_gen_hz": 5000000,
+    "pcnt_meas_hz": 4999549.998,
+    "error_pct": 0.009000040000006556
+  },
+  {
+    "requested_hz": 10000000,
+    "mode": "LEDC",
+    "res_bits": 4,
+    "div_param": 256,
+    "calc_gen_hz": 5000000,
+    "pcnt_meas_hz": 4999984,
+    "error_pct": 50.00016000000001
+  },
+  {
+    "requested_hz": 15000000,
+    "mode": "LEDC",
+    "res_bits": 4,
+    "div_param": 256,
+    "calc_gen_hz": 5000000,
+    "pcnt_meas_hz": 4999547.992,
+    "error_pct": 66.66968005333335
+  },
+  {
+    "requested_hz": 20000000,
+    "mode": "LEDC",
+    "res_bits": 4,
+    "div_param": 256,
+    "calc_gen_hz": 5000000,
+    "pcnt_meas_hz": 4999542.003,
+    "error_pct": 75.002289985
+  }
+]
