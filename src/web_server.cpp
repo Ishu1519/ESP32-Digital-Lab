@@ -69,6 +69,7 @@ esp_err_t WebServerManager::init() {
 }
 
 void WebServerManager::broadcastTelemetry() {
+    s_ws.cleanupClients();
     if (s_ws.count() == 0) return;
 
     StaticJsonDocument<1024> doc;
